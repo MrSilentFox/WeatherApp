@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:my_weather/utilities/global_variables.dart';
 
 class InitialPageProvider extends ChangeNotifier{
+
+  TextEditingController _controller = TextEditingController();
+
   String _city;
   String _language = 'en';
 
@@ -17,5 +20,9 @@ class InitialPageProvider extends ChangeNotifier{
     _language = lng;
     GlobalVariables.setLanguage(_language);
     notifyListeners();
+  }
+
+  TextEditingController getTextController(){
+    return _controller;
   }
 }
