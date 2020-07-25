@@ -1,10 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_weather/api/weather_api.dart';
 import 'package:my_weather/models/weather_forecast_daily.dart';
-import 'package:my_weather/widgets/forecast_page/info_widget.dart';
-import 'package:my_weather/widgets/forecast_page/six_day_forecast_widget.dart';
-import 'package:my_weather/widgets/forecast_page/weather_image_widget.dart';
-
+import 'package:my_weather/widgets/forecast_page/forecast_widget.dart';
 class ForecastScreen extends StatefulWidget {
   final String _city;
 
@@ -36,24 +34,16 @@ class _ForecastScreenState extends State<ForecastScreen> {
     return Scaffold(
       backgroundColor: Color.fromRGBO(35, 41, 44, 1),
       body: SafeArea(
-          child: FutureBuilder(
-            future: forecastObject,
-            builder: (context, snapshot){
-              if(snapshot.hasData){
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    weatherImage(context, snapshot),
-                    infoWidget(context, snapshot),
-                    SizedBox(height: 80,),
-                    sixDayForecast(context, snapshot)
-                  ],
-                );
-              }else{
-                return Center(child: CircularProgressIndicator());
-              }
-            },
-          )
+         child: FutureBuilder(
+           future: forecastObject,
+           builder: (context, snapshot){
+             if(snapshot.hasData){
+               return ForecastWidget(snapshot);
+             }else{
+               return Center(child: CircularProgressIndicator(),);
+             }
+           },
+         ),
       ),
     );
   }
