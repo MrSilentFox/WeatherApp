@@ -27,11 +27,13 @@ class LoadCurrentForecast {
     result.feelsLike = forecast.feelsLike.day.round().toString();
     result.wind = forecast.speed.toString();
     result.humidity = forecast.humidity.toString();
-    result.pressure = (forecast.pressure * 0.75006375541921).round().toString();
+    result.pressure = (forecast.pressure * 0.75).round().toString();
     result.rainFall = forecast.rain.toString();
     result.cloudiness = forecast.clouds.toString();
     var dateTime = DateTime.fromMillisecondsSinceEpoch(forecast.dt * 1000);
     result.day = Util.getFormatDate(dateTime);
+
+    if(result.rainFall=='null'){result.rainFall='0';}
 
     return result;
   }
