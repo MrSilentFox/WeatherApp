@@ -6,6 +6,7 @@ import 'package:my_weather/view/initial_page/initial_page_provider.dart';
 import 'package:provider/provider.dart';
 
 class InitCityScreen extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     InitialPageProvider _state = Provider.of<InitialPageProvider>(context);
@@ -102,7 +103,7 @@ class InitCityScreen extends StatelessWidget {
           height: 30,
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 70),
+          padding: const EdgeInsets.symmetric(horizontal: 50),
           child: TextField(
             style: TextStyle(color: Colors.white),
             decoration: InputDecoration(
@@ -128,9 +129,12 @@ class InitCityScreen extends StatelessWidget {
   Widget buttons(BuildContext context, InitialPageProvider _state) {
     return Column(
       children: <Widget>[
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8.0),
+        SizedBox(height: 30,),
+        Container(
+          width: MediaQuery.of(context).size.width * 0.7,
+          color: Colors.white,
           child: RaisedButton(
+            elevation: 0,
             color: Colors.transparent,
             highlightColor: Colors.transparent,
             splashColor: Colors.tealAccent,
@@ -138,24 +142,28 @@ class InitCityScreen extends StatelessWidget {
               GlobalVariables.getLanguage == 'ru'
                   ? 'Прогноз по городу'
                   : 'Forecast from city',
-              style: TextStyle(color: Colors.white, fontSize: 20),
+              style: TextStyle(color: Colors.black, fontSize: 20),
             ),
             onPressed: () {
               if (_state.getCity != null) {
                 Route route = MaterialPageRoute(
-                    builder: (context) => ForecastScreen(_state.getCity));
+                    builder: (context) => ForecastScreen(_state.getCity.trimRight()));
                 Navigator.push(context, route);
               }
             },
           ),
         ),
+        SizedBox(height: 10,),
         Text(
           'or',
-          style: TextStyle(color: Colors.white.withOpacity(0.4), fontSize: 20),
+          style: TextStyle(color: Colors.white, fontSize: 20),
         ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8.0),
+        SizedBox(height: 10,),
+        Container(
+          width: MediaQuery.of(context).size.width * 0.7,
+          color: Colors.white,
           child: RaisedButton(
+            elevation: 0,
             color: Colors.transparent,
             highlightColor: Colors.transparent,
             splashColor: Colors.tealAccent,
@@ -163,7 +171,7 @@ class InitCityScreen extends StatelessWidget {
                 GlobalVariables.getLanguage == 'ru'
                     ? 'Прогноз по локации'
                     : 'Forecast from location',
-                style: TextStyle(color: Colors.white, fontSize: 20)),
+                style: TextStyle(color: Colors.black, fontSize: 20)),
             onPressed: () {
               Route route =
                   MaterialPageRoute(builder: (context) => ForecastScreen(null));

@@ -50,15 +50,15 @@ class _ForecastWidgetState extends State<ForecastWidget> {
     CurrentForecast forecast = LoadCurrentForecast.getCurrentForecast(snapshot, index);
     return Expanded(
       child: Container(
-        color: currentDay == index ? Colors.tealAccent.withOpacity(0.9) : Colors.transparent,
+        color: currentDay == index ? Colors.white : Colors.transparent,
         height: 70,
         child: GestureDetector(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Icon(Icons.cloud_queue, color: Colors.white,),
-              Text(forecast.temperature, style: TextStyle(color: Colors.white),),
-              Text(forecast.day, style: TextStyle(color: Colors.white, fontSize: 12),),
+              Icon(Icons.cloud_queue, color: currentDay == index ? Colors.black : Colors.white,),
+              Text('${forecast.temperature}°', style: TextStyle(color: currentDay == index ? Colors.black : Colors.white),),
+              Text(forecast.day, style: TextStyle(color: currentDay == index ? Colors.black : Colors.white, fontSize: 12),),
             ],
           ),
           onTap: (){
