@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_weather/models/current_forecast.dart';
 import 'package:my_weather/models/weather_forecast_daily.dart';
+import 'package:my_weather/utilities/forecast_icon_util.dart';
 import 'package:my_weather/widgets/forecast_page/city_block.dart';
 import 'package:my_weather/widgets/forecast_page/info_widget.dart';
 import 'package:my_weather/widgets/forecast_page/weather_image_widget.dart';
@@ -56,7 +57,8 @@ class _ForecastWidgetState extends State<ForecastWidget> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Icon(Icons.cloud_queue, color: currentDay == index ? Colors.black : Colors.white,),
+              IconUtill.getIcon(forecast.description, currentDay == index ? Colors.black : Colors.white),
+              //Icon(Icons.cloud_queue, color: currentDay == index ? Colors.black : Colors.white,),
               Text('${forecast.temperature}°', style: TextStyle(color: currentDay == index ? Colors.black : Colors.white),),
               Text(forecast.day, style: TextStyle(color: currentDay == index ? Colors.black : Colors.white, fontSize: 12),),
             ],

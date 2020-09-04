@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:my_weather/utilities/global_variables.dart';
 import 'package:my_weather/view/forecast_page/forecast_page.dart';
 import 'package:my_weather/view/initial_page/initial_page_provider.dart';
+import 'package:my_weather/widgets/initial_page/button_bar.dart';
 import 'package:provider/provider.dart';
 
 class InitCityScreen extends StatelessWidget {
@@ -73,7 +74,7 @@ class InitCityScreen extends StatelessWidget {
               children: <Widget>[
                 label(),
                 searchField(_state),
-                buttons(context, _state)
+                ButtonsBar(_state)
               ],
             ),
           ),
@@ -125,62 +126,4 @@ class InitCityScreen extends StatelessWidget {
       ],
     );
   }
-
-  Widget buttons(BuildContext context, InitialPageProvider _state) {
-    return Column(
-      children: <Widget>[
-        SizedBox(height: 30,),
-        Container(
-          width: MediaQuery.of(context).size.width * 0.7,
-          color: Colors.white,
-          child: RaisedButton(
-            elevation: 0,
-            color: Colors.transparent,
-            highlightColor: Colors.transparent,
-            splashColor: Colors.tealAccent,
-            child: Text(
-              GlobalVariables.getLanguage == 'ru'
-                  ? 'Прогноз по городу'
-                  : 'Forecast from city',
-              style: TextStyle(color: Colors.black, fontSize: 20),
-            ),
-            onPressed: () {
-              if (_state.getCity != null) {
-                Route route = MaterialPageRoute(
-                    builder: (context) => ForecastScreen(_state.getCity.trimRight()));
-                Navigator.push(context, route);
-              }
-            },
-          ),
-        ),
-        SizedBox(height: 10,),
-        Text(
-          'or',
-          style: TextStyle(color: Colors.white, fontSize: 20),
-        ),
-        SizedBox(height: 10,),
-        Container(
-          width: MediaQuery.of(context).size.width * 0.7,
-          color: Colors.white,
-          child: RaisedButton(
-            elevation: 0,
-            color: Colors.transparent,
-            highlightColor: Colors.transparent,
-            splashColor: Colors.tealAccent,
-            child: Text(
-                GlobalVariables.getLanguage == 'ru'
-                    ? 'Прогноз по локации'
-                    : 'Forecast from location',
-                style: TextStyle(color: Colors.black, fontSize: 20)),
-            onPressed: () {
-              Route route =
-                  MaterialPageRoute(builder: (context) => ForecastScreen(null));
-              Navigator.push(context, route);
-            },
-          ),
-        ),
-      ],
-    );
-  }
-
 }
