@@ -13,10 +13,13 @@ Widget weatherImage(CurrentForecast currentForecast){
     }else if(description.toLowerCase().contains('thunder') || description.toLowerCase().contains('гроза')){
       return FlareActor('assets/animations/thunder_animation.flr',
           alignment: Alignment.topCenter, animation: 'run');
+    }else if(description.toLowerCase().contains('snow') || description.toLowerCase().contains('снег')){
+      return FlareActor('assets/animations/snow.flr',
+          alignment: Alignment.topCenter, animation: 'run');
     }else if(description.toLowerCase().contains('cloud') || description.toLowerCase().contains('обла') || description.toLowerCase().contains('пасмурно')){
       return FlareActor('assets/animations/clouds_animation.flr',
           alignment: Alignment.topCenter, animation: 'run');
-    }else if(date.hour>10 && date.hour < 22){
+    }else if(date.hour>6 && date.hour < 21){
       return FlareActor('assets/animations/sun_animation.flr',
           alignment: Alignment.topCenter, animation: 'run');
     }else{

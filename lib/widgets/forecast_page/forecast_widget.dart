@@ -35,13 +35,16 @@ class _ForecastWidgetState extends State<ForecastWidget> {
     return Stack(
       children: <Widget>[
         weatherImage(currentForecast),
-        Column(
-          children: <Widget>[
-            SizedBox(height: 200,),
-            cityBlock(context, currentForecast),
-            forecastCardList(),
-            infoWidget(currentForecast)
-          ],
+        SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              SizedBox(height: 200,),
+              cityBlock(context, currentForecast),
+              forecastCardList(),
+              infoWidget(currentForecast),
+              Container(height: 60 ,color: Colors.transparent,),
+            ],
+          ),
         )
       ],
     );
